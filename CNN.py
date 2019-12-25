@@ -29,23 +29,31 @@ model.add(MaxPooling2D(pool_size=(2,2)))
 model.add(Dropout(0.2))
 
 model.add(Conv2D(64, (3,3), activation='relu'))
+model.add(Conv2D(64, (3,3), activation='relu'))
 model.add(MaxPooling2D(pool_size=(2,2)))
 model.add(Dropout(0.2))
 
 model.add(Conv2D(128, (3,3), activation='relu'))
+model.add(Conv2D(128, (3,3), activation='relu'))
 model.add(MaxPooling2D(pool_size=(2,2)))
 model.add(Dropout(0.2))
+
+#model.add(Conv2D(256, (3,3), activation='relu'))
+#model.add(Conv2D(256, (3,3), activation='relu'))
+#model.add(Conv2D(256, (3,3), activation='relu'))
+#model.add(MaxPooling2D(pool_size=(2,2)))
+#model.add(Dropout(0.2))
 
 model.add(Flatten())
 
 model.add(Dense(1, activation='sigmoid'))
 
-tensorboard = TensorBoard(log_dir='logs/{}'.format('test'))
+tensorboard = TensorBoard(log_dir='logs/{}'.format('vgg128'))
 
 model.compile(optimizer='adam',
 			    loss='binary_crossentropy', 
 				metrics=['accuracy'])
 
-model.fit(X, y, batch_size=32, epochs=20, validation_split=0.15, callbacks=[tensorboard])
+model.fit(X, y, batch_size=32, epochs=10, validation_split=0.3, callbacks=[tensorboard])
 
-model.save('3-CNN.model')
+model.save('vgg128.model')

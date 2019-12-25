@@ -20,6 +20,6 @@ def prepare(filepath):
 
 model = tf.keras.models.load_model("3-CNN.model")
 
-prediction = model.predict([prepare('chien.jpg')])
+prediction = model.predict([prepare('chat3.jpg')])
 print(prediction)  # will be a list in a list.
 print(CATEGORIES[int(prediction[0][0])])
